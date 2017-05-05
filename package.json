@@ -1,0 +1,49 @@
+{
+  "name": "wordcoder",
+  "version": "0.0.1",
+  "description": "Encode values using common english words.",
+  "main": "index.js",
+  "bin" : "./cli.js",
+  "scripts": {
+    "test": "tape test/**/*.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellofloat/wordcoder.git"
+  },
+  "keywords": [],
+  "author": "Andy Burke <aburke@bitflood.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hellofloat/wordcoder/issues"
+  },
+  "homepage": "https://github.com/hellofloat/wordcoder#readme",
+  "dependencies": {
+    "bit-buffer": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "jshintConfig": {
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "esversion": 6,
+    "forin": true,
+    "freeze": true,
+    "futurehostile": true,
+    "latedef": "nofunc",
+    "maxcomplexity": 15,
+    "maxdepth": 3,
+    "maxparams": 4,
+    "maxstatements": 30,
+    "noarg": true,
+    "nocomma": true,
+    "node": true,
+    "nonbsp": true,
+    "nonew": true,
+    "strict": "global",
+    "undef": true,
+    "unused": true
+  }
+}
