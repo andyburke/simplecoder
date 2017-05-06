@@ -1,9 +1,9 @@
 {
   "name": "wordcoder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Encode values using common english words.",
   "main": "index.js",
-  "bin" : "./cli.js",
+  "bin": "./cli.js",
   "scripts": {
     "test": "tape test/**/*.js | tap-spec"
   },
@@ -45,5 +45,9 @@
     "strict": "global",
     "undef": true,
     "unused": true
+  },
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
   }
 }
