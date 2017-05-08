@@ -1,10 +1,19 @@
 simplecoder
 =========
 
-simplecoder allows you to encode data using common English words. Think of it like
-base64, but instead of characters, we're using 256 common 4-letter English words.
+simplecoder allows you to encode data using human-friendly dictionaries.
 
-For instance, you could encode a UUID:
+Think of it like base64, but instead of characters, you can use dictionaries
+comprised of simple words (the default dictionary is a curated set of some of
+the most common, easily distinguishable 4-letter words in English).
+
+If you are capable of producing additional dictionaries, especially in other
+languages, please consider submitting a pull request, it would gladly be
+accepted.
+
+## Examples
+
+You could encode a UUID using the default 4-letter word English dictionary:
 
 ```
 c27c98fa-32fc-406e-a7ddebce44fe9e77
@@ -24,30 +33,14 @@ Even a SHA256 isn't terrible:
 ```
 2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90
 
-down tone band tall
-miss boat able ship
-case cook suit ever
-page rule just salt
-deal post cost talk
-town page seed hand
-pick ship long town
-card lift like pair
+down tone band tall miss boat able ship
+case cook suit ever page rule just salt
+deal post cost talk town page seed hand
+pick ship long town card lift like pair
 ```
 
-SHA512 may be pushing it, but...:
-
-```
-408b27d3097eea5a46bf2ab6433a7234a33d5e49957b13ec7acc2ca08e1a13c75272c90c8d3385d47ede5420a7a9623aad817d9f8a70bd100a0acea7400daa59
-
-flow note dear thus bell milk wash home
-full star door skin form feet look fact
-roll fire idea glad play mass both wear
-mark term draw ring over case both take
-head look tall blow open face name time
-milk true heat cool rule salt jump feet
-sell more mile ride nose list soon bone
-best best that rule flow blue same hold
-```
+The encoded version of the SHA256 might actually be easily verified by a human,
+whereas comparing two strings of base64 is much more error-prone.
 
 ## Installation
 
@@ -85,10 +78,11 @@ decoded.toString( 'hex' );
 
 ### API
 
-- encode( buffer | array | string ) : array
+- encode( buffer | array | string[, dictionary ] ) : array
 
-Takes the given buffer, array or string and returns an encoded array of common
-4-letter english words.
+Takes the given buffer, array or string and returns an encoded array from the
+given dictionary. If no dictionary is specified, simplecoder will use the
+default simple 4-letter word English dictionary.
 
 Example:
 
@@ -102,9 +96,11 @@ simplecoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ) );
 //   'free', 'year', 'rest', 'main' ]
 ```
 
-- decode( array ) : buffer
+- decode( array[, dictionary ] ) : buffer
 
-Take an array of simplecoder-encoded words and produces an output buffer.
+Take an array of simplecoder-encoded values and an optional dictionary and
+produce an output buffer. If the dictionary is not specified, the default
+simple 4-letter word English dictionary will be assumed.
 
 Example:
 
@@ -136,6 +132,6 @@ be more easily shared and verified via things like phone calls.
 
 # CHANGELOG
 
-v0.0.1
-------
+v0.0.x
+-----
 - Prototyping
