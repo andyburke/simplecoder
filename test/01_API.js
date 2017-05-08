@@ -1,11 +1,11 @@
 'use strict';
 
-const wordcoder = require( '../index.js' );
+const simplecoder = require( '../index.js' );
 const tape = require( 'tape' );
 
 tape( 'API: exports properly', t => {
-    t.ok( wordcoder, 'module exports' );
-    t.equal( wordcoder && typeof wordcoder.encode, 'function', 'exports encode method' );
-    t.equal( wordcoder && typeof wordcoder.decode, 'function', 'exports decode method' );
+    t.ok( simplecoder, 'module exports' );
+    t.equal( simplecoder && typeof simplecoder.encode, 'function', 'exports encode method' );
+    t.equal( simplecoder && typeof simplecoder.decode, 'function', 'exports decode method' );
     t.end();
 } );

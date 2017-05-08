@@ -1,7 +1,7 @@
 {
-  "name": "wordcoder",
-  "version": "0.0.2",
-  "description": "Encode values using common english words.",
+  "name": "simplecoder",
+  "version": "0.0.3",
+  "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
   "scripts": {
@@ -9,17 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hellofloat/wordcoder.git"
+    "url": "git+https://github.com/hellofloat/simplecoder.git"
   },
   "keywords": [],
   "author": "Andy Burke <aburke@bitflood.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hellofloat/wordcoder/issues"
+    "url": "https://github.com/hellofloat/simplecoder/issues"
   },
-  "homepage": "https://github.com/hellofloat/wordcoder#readme",
+  "homepage": "https://github.com/hellofloat/simplecoder#readme",
   "dependencies": {
-    "bit-buffer": "^0.1.0"
   },
   "engines": {
     "node": ">=6.0.0"

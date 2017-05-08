@@ -1,7 +1,7 @@
-wordcoder
+simplecoder
 =========
 
-wordcoder allows you to encode data using common English words. Think of it like
+simplecoder allows you to encode data using common English words. Think of it like
 base64, but instead of characters, we're using 256 common 4-letter English words.
 
 For instance, you could encode a UUID:
@@ -52,18 +52,18 @@ best best that rule flow blue same hold
 ## Installation
 
 ```
-npm install wordcoder
+npm install simplecoder
 ```
 
 ## Usage
 
 ```javascript
 const uuid = require( 'uuid' );
-const wordcoder = require( 'wordcoder' );
+const simplecoder = require( 'simplecoder' );
 
 // create a uuid in a buffer (avoid encoding as hex and doubling size)
 const my_uuid = uuid.v4( null, Buffer.alloc( 16 ) );
-const encoded = wordcoder.encode( guid );
+const encoded = simplecoder.encode( guid );
 
 // ->
 // [ 'such', 'mean', 'pull', 'wood',
@@ -71,7 +71,7 @@ const encoded = wordcoder.encode( guid );
 //   'rule', 'trip', 'wave', 'that',
 //   'free', 'year', 'rest', 'main' ]
 
-const decoded = wordcoder.decode( encoded );
+const decoded = simplecoder.decode( encoded );
 
 // ->
 // <Buffer c2 7c 98 fa 32 fc 40 6e a7 dd eb ce 44 fe 9e 77>
@@ -93,7 +93,7 @@ Takes the given buffer, array or string and returns an encoded array of common
 Example:
 
 ```javascript
-wordcoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ) );
+simplecoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ) );
 
 // ->
 // [ 'such', 'mean', 'pull', 'wood',
@@ -104,12 +104,12 @@ wordcoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ) );
 
 - decode( array ) : buffer
 
-Take an array of wordcoder-encoded words and produces an output buffer.
+Take an array of simplecoder-encoded words and produces an output buffer.
 
 Example:
 
 ```javascript
-wordcoder.decode( [
+simplecoder.decode( [
     'such', 'mean', 'pull', 'wood',
     'ever', 'work', 'flow', 'like',
     'rule', 'trip', 'wave', 'that',

@@ -1,14 +1,14 @@
 'use strict';
 
-const Bit_Stream = require( 'bit-buffer' ).BitStream;
-
 const DEFAULT_DICTIONARY = require( './dictionaries/en' );
 
+// NOTE: changing the block size to something other than a byte will require
+//       reworking the internals because we rely on Buffer.readUInt8()/Buffer.writeUInt8().
 const ENCODING_BLOCK_SIZE = 8; // 256 entry dictionaries
-const REQUIRED_DICTIONARY_LENGTH = Math.pow( 2, ENCODING_BLOCK_SIZE );
+const REQUIRED_DICTIONARY_LENGTH = 256;
 
 module.exports = {
-    encode: function( input, _dictionary ) {
+    encode: function( _input, _dictionary ) {
         const dictionary = _dictionary || DEFAULT_DICTIONARY;
 
         if ( !Array.isArray( dictionary ) ) {
@@ -19,12 +19,12 @@ module.exports = {
             throw new Error( `Invalid dictionary! Required length: ${ REQUIRED_DICTIONARY_LENGTH } / Actual length: ${ dictionary.length }` );
         }
 
-        const bit_stream = new Bit_Stream( Buffer.isBuffer( input ) ? input : Buffer.from( input ) );
+        const input = Buffer.isBuffer( _input ) ? _input : Buffer.from( _input );
 
         const encoded = [];
 
-        while ( bit_stream.bitsLeft > 0 ) {
-            const raw_value = bit_stream.readBits( Math.min( ENCODING_BLOCK_SIZE, bit_stream.bitsLeft ), false );
+        for( let i = 0; i < input.length; ++i ) {
+            const raw_value = input.readUInt8( i );
             const encoded_value = dictionary[ raw_value ];
             if ( !encoded_value ) {
                 throw new Error( `Could not encode value: ${ raw_value }` );
@@ -46,16 +46,16 @@ module.exports = {
             throw new Error( `Invalid dictionary! Required length: ${ REQUIRED_DICTIONARY_LENGTH } / Actual length: ${ dictionary.length }` );
         }
 
-        const decoded_stream = new Bit_Stream( Buffer.alloc( Math.ceil( ( input.length * ENCODING_BLOCK_SIZE ) / 8 ) ) );
+        const decoded = Buffer.alloc( Math.ceil( ( input.length * ENCODING_BLOCK_SIZE ) / 8 ) );
 
-        input.forEach( word => {
-            const index = dictionary.indexOf( word );
-            if ( index === -1 ) {
+        input.forEach( ( word, index ) => {
+            const value = dictionary.indexOf( word );
+            if ( value === -1 ) {
                 throw new Error( `Invalid word: ${ word }` );
             }
-            decoded_stream.writeBits( index, ENCODING_BLOCK_SIZE );
+            decoded.writeUInt8( value, index );
         } );
 
-        return decoded_stream.view.buffer;
+        return decoded;
     }
 };
