@@ -1,6 +1,6 @@
 {
   "name": "simplecoder",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hellofloat/simplecoder.git"
+    "url": "git+https://github.com/andyburke/simplecoder.git"
   },
   "keywords": [],
   "author": "Andy Burke <aburke@bitflood.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hellofloat/simplecoder/issues"
+    "url": "https://github.com/andyburke/simplecoder/issues"
   },
-  "homepage": "https://github.com/hellofloat/simplecoder#readme",
+  "homepage": "https://github.com/andyburke/simplecoder#readme",
   "dependencies": {
   },
   "engines": {
