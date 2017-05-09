@@ -42,6 +42,19 @@ pick ship long town card lift like pair
 The encoded version of the SHA256 might actually be easily verified by a human,
 whereas comparing two strings of base64 is much more error-prone.
 
+You could use the emoji dictionary to encode, say a SHA256 of the latest LTS
+node.js release:
+
+🍦🏑🐰🐥🐍🐯🐭🎡🐓🐭🍨🍴🐉🎡🌂🐧🐓🍳🐡🐓🐯🍤🐔🍺
+
+🍪🎓🌀🐫🎱🌲🐙🏈⌛️🐭🐕🍺🐣🎷🐫🍸🍈🍕🍪🎧⌛️🍬🐓🐓
+
+That's a little more fun than:
+
+```
+a8f679f595fd921305c28d126935ad59b4419ac8474a99997a31e01ab50acd3d
+```
+
 ## Installation
 
 ```
