@@ -1,6 +1,6 @@
 {
   "name": "simplecoder",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
