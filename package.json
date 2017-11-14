@@ -1,6 +1,6 @@
 {
   "name": "simplecoder",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
@@ -18,34 +18,12 @@
     "url": "https://github.com/andyburke/simplecoder/issues"
   },
   "homepage": "https://github.com/andyburke/simplecoder#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "engines": {
-    "node": ">=6.0.0"
-  },
-  "jshintConfig": {
-    "curly": true,
-    "eqeqeq": true,
-    "eqnull": true,
-    "esversion": 6,
-    "forin": true,
-    "freeze": true,
-    "futurehostile": true,
-    "latedef": "nofunc",
-    "maxcomplexity": 15,
-    "maxdepth": 3,
-    "maxparams": 4,
-    "maxstatements": 30,
-    "noarg": true,
-    "nocomma": true,
-    "node": true,
-    "nonbsp": true,
-    "nonew": true,
-    "strict": "global",
-    "undef": true,
-    "unused": true
+    "node": ">=8.0.0"
   },
   "devDependencies": {
+    "eslint": "^4.11.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   }
