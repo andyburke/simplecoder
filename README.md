@@ -100,13 +100,22 @@ default simple 4-letter word English dictionary.
 Example:
 
 ```javascript
-simplecoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ) );
+simplecoder.encode( uuid.v4( null, Buffer.alloc( 16 ) ), 'en' );
 
 // ->
 // [ 'such', 'mean', 'pull', 'wood',
 //   'ever', 'work', 'flow', 'like',
 //   'rule', 'trip', 'wave', 'that',
 //   'free', 'year', 'rest', 'main' ]
+
+// Using webpack and want to ensure a certain dictionary is there? Require it
+// directly so webpack will know to include it:
+
+const DICTIONARIES = {
+    en: require( 'simplecoder/dictionaries/en.js' ),
+    es: require( 'simplecoder/dictionaries/es.js' )
+};
+
 ```
 
 - decode( array[, dictionary ] ) : buffer
@@ -123,18 +132,24 @@ simplecoder.decode( [
     'ever', 'work', 'flow', 'like',
     'rule', 'trip', 'wave', 'that',
     'free', 'year', 'rest', 'main'
-] );
+], 'en' );
 
 // ->
 // <Buffer c2 7c 98 fa 32 fc 40 6e a7 dd eb ce 44 fe 9e 77>
 
 ```
 
+### Supported Dictionaries
+
+ - emoji
+ - en
+ - es
+
 ## Contributing
 
 Pull requests are very welcome! Just make sure your code:
 
-1) Has no jshint warnings or errors according to the config in package.json
+1) Has no eslint warnings or errors
 2) Is beautified using jsbeautifier and the included .jsbeautifyrc
 3) Has tests and all tests pass
 
@@ -145,6 +160,40 @@ be more easily shared and verified via things like phone calls.
 
 # CHANGELOG
 
-v0.0.x
+v3.0.0
+----
+- Dynamic importing of dictionaries (can help with code size on the browser side)
+- Change encode/decode to take a dictionary name (eg: 'en') vs. a dictionary object
+- Add Spanish dictionary
+- Improve eslint configuration
+
+v2.0.0
+----
+- Convert CLI to support a REPL
+- Require Node v8+
+- Switch to eslint from jshint
+
+v1.0.0
+----
+- First stable release
+
+v0.0.5
+----
+- Update repo URLs
+
+v0.0.4
+----
+- Improved documentation
+
+v0.0.3
+----
+- Rename to 'simplecoder'
+- Improve code + testing
+
+v0.0.2
+-----
+- Multiple dictionary support (emojis!)
+
+v0.0.1
 -----
 - Prototyping

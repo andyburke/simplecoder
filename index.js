@@ -1,23 +1,31 @@
 'use strict';
 
-const DEFAULT_DICTIONARY = require( './dictionaries/en' );
+const DEFAULT_DICTIONARY = 'en';
 
 // NOTE: changing the block size to something other than a byte will require
 //       reworking the internals because we rely on Buffer.readUInt8()/Buffer.writeUInt8().
 const ENCODING_BLOCK_SIZE = 8; // 256 entry dictionaries
 const REQUIRED_DICTIONARY_LENGTH = 256;
 
+const DICTIONARIES = {};
+
+function get_dictionary( _dictionary ) {
+    const dictionary = DICTIONARIES[ _dictionary ] || ( DICTIONARIES[ _dictionary ] = require( `./dictionaries/${ _dictionary }.js` ) );
+
+    if ( !Array.isArray( dictionary ) ) {
+        throw new Error( `No such dictionary: ${ _dictionary }` );
+    }
+
+    if ( dictionary.length < REQUIRED_DICTIONARY_LENGTH ) {
+        throw new Error( `Invalid dictionary (${ _dictionary })! Required length: ${ REQUIRED_DICTIONARY_LENGTH } / Actual length: ${ dictionary.length }` );
+    }
+
+    return dictionary;
+}
+
 module.exports = {
-    encode: function( _input, _dictionary ) {
-        const dictionary = _dictionary || DEFAULT_DICTIONARY;
-
-        if ( !Array.isArray( dictionary ) ) {
-            throw new Error( `Missing dictionary!` );
-        }
-
-        if ( dictionary.length !== REQUIRED_DICTIONARY_LENGTH ) {
-            throw new Error( `Invalid dictionary! Required length: ${ REQUIRED_DICTIONARY_LENGTH } / Actual length: ${ dictionary.length }` );
-        }
+    encode: function( _input, _dictionary = DEFAULT_DICTIONARY ) {
+        const dictionary = get_dictionary( _dictionary );
 
         const input = Buffer.isBuffer( _input ) ? _input : Buffer.from( _input );
 
@@ -35,16 +43,8 @@ module.exports = {
         return encoded;
     },
 
-    decode: function( input, _dictionary ) {
-        const dictionary = _dictionary || DEFAULT_DICTIONARY;
-
-        if ( !Array.isArray( dictionary ) ) {
-            throw new Error( `Missing dictionary!` );
-        }
-
-        if ( dictionary.length !== REQUIRED_DICTIONARY_LENGTH ) {
-            throw new Error( `Invalid dictionary! Required length: ${ REQUIRED_DICTIONARY_LENGTH } / Actual length: ${ dictionary.length }` );
-        }
+    decode: function( input, _dictionary = DEFAULT_DICTIONARY ) {
+        const dictionary = get_dictionary( _dictionary );
 
         const decoded = Buffer.alloc( Math.ceil( ( input.length * ENCODING_BLOCK_SIZE ) / 8 ) );
 

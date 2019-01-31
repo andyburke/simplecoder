@@ -9,9 +9,12 @@
         "sourceType": "script"
     },
     "rules": {
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
+        "no-const-assign": "error",
+        "no-this-before-super": "error",
+        "no-undef": "error",
+        "no-use-before-define": [ "error", {
+            "functions": false
+        } ],
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
         "constructor-super": "warn",

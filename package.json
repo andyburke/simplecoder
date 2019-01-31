@@ -1,6 +1,6 @@
 {
   "name": "simplecoder",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/andyburke/simplecoder.git"
   },
   "keywords": [],
-  "author": "Andy Burke <aburke@bitflood.org>",
+  "author": "Andy Burke <andy.burke@mailbox.earth>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyburke/simplecoder/issues"
