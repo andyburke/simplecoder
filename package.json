@@ -26,8 +26,8 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.11.0",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.3"
+    "eslint": "^5.16.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.2"
   }
 }
