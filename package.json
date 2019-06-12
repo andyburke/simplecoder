@@ -1,9 +1,12 @@
 {
   "name": "simplecoder",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Encode values using simple dictionaries.",
   "main": "index.js",
   "bin": "./cli.js",
+  "files": [
+    "./dictionaries/*.js"
+  ],
   "scripts": {
     "test": "tape test/**/*.js | tap-spec"
   },
