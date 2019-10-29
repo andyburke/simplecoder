@@ -9,7 +9,15 @@ function handle_operation( operation, value ) {
             console.log( '"' + simplecoder.decode( value.split( '-' ) ).toString() + '"' );
             break;
         case 'encode':
-            console.log( simplecoder.encode( new Buffer( value ) ).join( '-' ) );
+            if ( /^0x[0-9a-f]/i.test( value ) ) {
+                value = value.substr( 2 );
+                const bytes = [];
+                for( let i = 0; i < value.length; i += 2 ) {
+                    bytes.push( parseInt( value.substr( i, 2 ), 16 ) );
+                }
+                value = bytes;
+            }
+            console.log( simplecoder.encode( Buffer.from( value ) ).join( '-' ) );
             break;
         default:
             console.error( `unknown operation: ${ operation }` );
